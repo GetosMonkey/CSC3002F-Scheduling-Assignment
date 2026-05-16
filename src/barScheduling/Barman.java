@@ -4,10 +4,6 @@
 
 package barScheduling;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Comparator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
@@ -326,19 +322,29 @@ public class Barman extends Thread {
     }
     
 //=NO CHANGE AREA ENDS=========================================================   
-      
-    
     
     private void recordCompletedOrder(DrinkOrder order) throws IOException {
+        
+        // Barman Thread class Schedulers: 0 = FCFS, 1 = SJF, 2 = Priority, 3 = MLFQ with aging
+        
+        String file = schedulerName + "_output.csv";
 
-        /*
-        Barman Thread class Schedulers:
-        0 = FCFS
-        1 = SJF
-        2 = Priority
-        3 = MLFQ with aging
-        */
+        try {
 
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+           
+            int customer = order.getOrderer();
+            String drink = order.toString();
+            long arrival = order.getArrivalTime();
+            long wait = order.getWaitingTime();
+            long turnaround = order.getTurnaroundTime();
+            long exec = order.getExecutionTime();
+           
+            writer.close();
+
+
+        } catch(IOException e) {System.out.println("IO exception");}
     }
 
 }
