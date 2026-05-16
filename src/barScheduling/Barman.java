@@ -2,8 +2,7 @@
 // edited by: Maryam Abrahams - ABRMAR043
 // due: 18th May 2025
 
-package barScheduling;
-
+package barScheduling; 
 import java.util.Comparator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
@@ -327,7 +326,12 @@ public class Barman extends Thread {
         
         // Barman Thread class Schedulers: 0 = FCFS, 1 = SJF, 2 = Priority, 3 = MLFQ with aging
         
+        String results_folder = "results";
         String file = "results/" + schedulerName + "_output.csv";
+
+        // counter act make clean removing results folder each time
+        File dir = new File(results_folder); 
+        if(!dir.exists()) {dir.mkdir();}
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));) {
            
@@ -343,7 +347,7 @@ public class Barman extends Thread {
             writer.write(record);
             writer.newLine();  
 
-        } catch(IOException e) {System.out.println("IO exception");}
+        } catch(IOException e) {System.out.println("IO exception" + e.getMessage());}
     }
 
 }
