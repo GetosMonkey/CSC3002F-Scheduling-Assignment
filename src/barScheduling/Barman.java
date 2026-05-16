@@ -331,7 +331,6 @@ public class Barman extends Thread {
 
         try {
 
-
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
            
             int customer = order.getOrderer();
@@ -340,9 +339,11 @@ public class Barman extends Thread {
             long wait = order.getWaitingTime();
             long turnaround = order.getTurnaroundTime();
             long exec = order.getExecutionTime();
-           
-            writer.close();
+            
+            String record = (customer + ", " + drink + ", " + arrival + ", " + wait + ", " + turnaround + ", " + exec); 
 
+            writer.write(record); 
+            writer.close();
 
         } catch(IOException e) {System.out.println("IO exception");}
     }
