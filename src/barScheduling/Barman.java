@@ -327,11 +327,9 @@ public class Barman extends Thread {
         
         // Barman Thread class Schedulers: 0 = FCFS, 1 = SJF, 2 = Priority, 3 = MLFQ with aging
         
-        String file = schedulerName + "_output.csv";
+        String file = "results/" + schedulerName + "_output.csv";
 
-        try {
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));) {
            
             int customer = order.getOrderer();
             String drink = order.toString();
@@ -342,8 +340,8 @@ public class Barman extends Thread {
             
             String record = (customer + ", " + drink + ", " + arrival + ", " + wait + ", " + turnaround + ", " + exec); 
 
-            writer.write(record); 
-            writer.close();
+            writer.write(record);
+            writer.newLine();  
 
         } catch(IOException e) {System.out.println("IO exception");}
     }
