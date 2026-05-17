@@ -111,20 +111,23 @@ def plot(df):
     plt.close()
 
     # Graph 5: wait time per patient variance
-    fig, axes = plt.subplots(1, len(patron_counts), figsize=(20, 6), sharey=True)
-    for ax, n in zip(axes, patron_counts):
-        subset = df[df['Num_patrons'] == n]
-        patron_std = subset.groupby(['Algorithm', 'Patron'])['Wait'].std().reset_index()
-        sns.barplot(x='Patron', y='Wait', hue='Algorithm',
-                    hue_order=algorithms, data=patron_std, ax=ax, legend=(ax == axes[0]))
-        ax.set_title(f'{n} Patrons')
+    fig, axes = plt.subplots(1, len(algorithms), figsize=(20, 6), sharey=True)
+    for ax, algo in zip(axes, algorithms):
+        subset = df[df['Algorithm'] == algo]
+        patron_std = subset.groupby(['Num_patrons', 'Patron'])['Wait'].std().reset_index()
+        sns.barplot(x='Patron', y='Wait', hue='Num_patrons',
+                    data=patron_std, ax=ax, legend=(ax == axes[0]), palette='viridis')
+        ax.set_title(algo)
         ax.set_xlabel('Patron ID')
         ax.set_ylabel('Std Dev of Wait (ms)' if ax == axes[0] else '')
-    axes[0].legend(loc='upper left')
-    fig.suptitle('Consistency of Wait Time Per Patron by Algorithm (lower = more predictable)')
+    handles, labels = axes[0].get_legend_handles_labels()
+    axes[0].get_legend().remove()
+    fig.legend(handles, labels, title='Num Patrons', loc='upper center',
+            ncol=len(patron_counts), bbox_to_anchor=(0.5, 1.02))
+    fig.suptitle('Per Patron Wait Time Variance', y=1.06)
     plt.tight_layout()
-    plt.savefig(os.path.join(directory, 'wait_consistency.png'))
-    print("Saved wait_consistency.png")
+    plt.savefig(os.path.join(directory, 'wait_variance.png'))
+    print("Saved wait_variance.png")
     plt.close()
 
     # Graph 6: Extra fairness plot - plot per algorithm stratified by num patrons instead of other way around
