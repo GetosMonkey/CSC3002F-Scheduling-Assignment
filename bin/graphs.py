@@ -129,7 +129,7 @@ def plot(df):
     print("Saved wait_variance.png")
     plt.close()
 
-    # Throughput: total orders per second per algorithm per patron count
+    # Graph 6: (Throughput) total orders per second per algorithm per patron count
     df['throughput'] = 1  
     throughput = df.groupby(['Algorithm', 'Num_patrons']).agg(
         total_orders=('throughput', 'sum'),
@@ -146,6 +146,20 @@ def plot(df):
     plt.grid(True)
     plt.savefig(os.path.join(directory, 'throughput.png'))
     print("Saved throughput.png")
+    plt.close()
+
+    # Graph 7: Response time
+    fig, axes = plt.subplots(1, len(patron_counts), figsize=(18, 6), sharey=True)
+    for ax, n in zip(axes, patron_counts):
+        subset = df[df['Num_patrons'] == n]
+        subset.boxplot(column='Wait', by='Algorithm', ax=ax)
+        ax.set_title(f'{n} Patrons')
+        ax.set_xlabel('')
+        ax.set_ylabel('Response Time (ms)' if ax == axes[0] else '')
+    fig.suptitle('Distribution of Response Time Across All Patron Counts')
+    plt.tight_layout()
+    plt.savefig(os.path.join(directory, 'response_time.png'), bbox_inches='tight')
+    print("Saved response_time.png")
     plt.close()
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
