@@ -129,6 +129,25 @@ def plot(df):
     print("Saved wait_variance.png")
     plt.close()
 
+    # Throughput: total orders per second per algorithm per patron count
+    df['throughput'] = 1  
+    throughput = df.groupby(['Algorithm', 'Num_patrons']).agg(
+        total_orders=('throughput', 'sum'),
+        elapsed=('Turnaround', 'max')
+    ).reset_index()
+    throughput['orders_per_sec'] = throughput['total_orders'] / (throughput['elapsed'] / 1000)
+
+    plt.figure(figsize=(10, 6))
+    sns.lineplot(x='Num_patrons', y='orders_per_sec', hue='Algorithm',
+                hue_order=algorithms, marker='o', data=throughput)
+    plt.title('Throughput vs Number of Patrons')
+    plt.ylabel('Orders per Second')
+    plt.xlabel('Number of Patrons')
+    plt.grid(True)
+    plt.savefig(os.path.join(directory, 'throughput.png'))
+    print("Saved throughput.png")
+    plt.close()
+
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 def main(): 
