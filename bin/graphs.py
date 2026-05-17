@@ -133,7 +133,7 @@ def plot(df):
         subset = df[df['Algorithm'] == algo]
         patron_totals = subset.groupby(['Num_patrons', 'Patron'])['Wait'].sum().reset_index()
         sns.barplot(x='Patron', y='Wait', hue='Num_patrons',
-                    data=patron_totals, ax=ax, legend=(ax == axes[0]))
+                    data=patron_totals, ax=ax, legend=(ax == axes[0]), palette='Set1') 
         ax.set_title(algo)
         ax.set_xlabel('Patron ID')
         ax.set_ylabel('Total Wait (ms)' if ax == axes[0] else '')
