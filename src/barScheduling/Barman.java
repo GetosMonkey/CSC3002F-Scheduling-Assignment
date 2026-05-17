@@ -38,6 +38,9 @@ public class Barman extends Thread {
 
     private final String schedulerName;
 
+    // header variable
+    boolean header = false; 
+
  //=NO CHANGE AREA BEINGS=========================================================   
     Barman(CountDownLatch startSignal, int sAlg, int sTime) {
         this.startSignal = startSignal;
@@ -334,15 +337,21 @@ public class Barman extends Thread {
         if(!dir.exists()) {dir.mkdir();}
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));) {
-           
-            int customer = order.getOrderer();
+            
+            if (!header) {
+            writer.write("#Patrons =" + SchedulingSimulation.noPatrons);
+            writer.newLine();
+            header = true;
+            }
+
+            int patron = order.getOrderer();
             String drink = order.toString();
             long arrival = order.getArrivalTime();
             long wait = order.getWaitingTime();
             long turnaround = order.getTurnaroundTime();
             long exec = order.getExecutionTime();
             
-            String record = (customer + ", " + drink + ", " + arrival + ", " + wait + ", " + turnaround + ", " + exec); 
+            String record = (patron + ", " + drink + ", " + arrival + ", " + wait + ", " + turnaround + ", " + exec); 
 
             writer.write(record);
             writer.newLine();  
