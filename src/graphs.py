@@ -115,18 +115,17 @@ def plot(df):
     for ax, algo in zip(axes, algorithms):
         subset = df[df['Algorithm'] == algo]
         patron_std = subset.groupby(['Num_patrons', 'Patron'])['Wait'].std().reset_index()
-        sns.barplot(x='Patron', y='Wait', hue='Num_patrons',
-                    data=patron_std, ax=ax, legend=(ax == axes[0]), palette='viridis')
+        sns.lineplot(x='Patron', y='Wait', hue='Num_patrons',
+             data=patron_std, ax=ax, legend=(ax == axes[0]), palette='viridis')
         ax.set_title(algo)
         ax.set_xlabel('Patron ID')
         ax.set_ylabel('Std Dev of Wait (ms)' if ax == axes[0] else '')
     handles, labels = axes[0].get_legend_handles_labels()
     axes[0].get_legend().remove()
-    fig.legend(handles, labels, title='Num Patrons', loc='upper center',
-            ncol=len(patron_counts), bbox_to_anchor=(0.5, 1.02))
-    fig.suptitle('Per Patron Wait Time Variance', y=1.06)
+    fig.legend(handles, labels, title='Num Patrons', loc='upper center',  ncol=len(patron_counts), bbox_to_anchor=(0.5, 1.02))
+    fig.suptitle('Wait Time Variance Per Patron', y=1.06)
     plt.tight_layout()
-    plt.savefig(os.path.join(directory, 'wait_variance.png'))
+    plt.savefig(os.path.join(directory, 'wait_variance.png'), bbox_inches='tight')
     print("Saved wait_variance.png")
     plt.close()
 
@@ -144,9 +143,9 @@ def plot(df):
     axes[0].get_legend().remove()
     fig.legend(handles, labels, title='Num Patrons', loc='upper center',
                ncol=len(patron_counts), bbox_to_anchor=(0.5, 1.02))
-    fig.suptitle('Total Wait Per Patron by Number of Patrons (per Algorithm)', y=1.06)
+    fig.suptitle('Total Wait Per Patron by Number of Patrons', y=1.06)
     plt.tight_layout()
-    plt.savefig(os.path.join(directory, 'fairness_per_algorithm.png'))
+    plt.savefig(os.path.join(directory, 'fairness_per_algorithm.png'), bbox_inches='tight')
     print("Saved fairness_per_algorithm.png")
     plt.close()
 
