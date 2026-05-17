@@ -129,26 +129,6 @@ def plot(df):
     print("Saved wait_variance.png")
     plt.close()
 
-    # Graph 6: Extra fairness plot - plot per algorithm stratified by num patrons instead of other way around
-    fig, axes = plt.subplots(1, len(algorithms), figsize=(20, 6), sharey=True)
-    for ax, algo in zip(axes, algorithms):
-        subset = df[df['Algorithm'] == algo]
-        patron_totals = subset.groupby(['Num_patrons', 'Patron'])['Wait'].sum().reset_index()
-        sns.barplot(x='Patron', y='Wait', hue='Num_patrons',
-                    data=patron_totals, ax=ax, legend=(ax == axes[0]), palette='Set1') 
-        ax.set_title(algo)
-        ax.set_xlabel('Patron ID')
-        ax.set_ylabel('Total Wait (ms)' if ax == axes[0] else '')
-    handles, labels = axes[0].get_legend_handles_labels()
-    axes[0].get_legend().remove()
-    fig.legend(handles, labels, title='Num Patrons', loc='upper center',
-               ncol=len(patron_counts), bbox_to_anchor=(0.5, 1.02))
-    fig.suptitle('Total Wait Per Patron by Number of Patrons', y=1.06)
-    plt.tight_layout()
-    plt.savefig(os.path.join(directory, 'fairness_per_algorithm.png'), bbox_inches='tight')
-    print("Saved fairness_per_algorithm.png")
-    plt.close()
-
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 def main(): 
