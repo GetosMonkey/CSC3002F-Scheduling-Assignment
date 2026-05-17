@@ -1,0 +1,121 @@
+commit fc4f80008379a683662ab74dc6410a4334387d9c (HEAD -> master, origin/master)
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 16:09:40 2026 +0200
+
+    Added response time as well
+
+commit a5d4b94dee8f7c87c2322fe4c3107e341d473a7f
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 16:05:55 2026 +0200
+
+    Added throughput graph
+
+commit d47cded012501ca7849844bc9724fdae32eaa455
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 15:18:11 2026 +0200
+
+    removed graph 6 - kinda redundent
+
+commit 5da59d3ad1229a9cbec16faeaad2a32a239c71b3
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 15:09:47 2026 +0200
+
+    final graphs
+
+commit f70bd06dff9ca1444302549b907cde343e2d86c2
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 14:50:29 2026 +0200
+
+    Fixed variance plot
+
+commit 655054ff04dc93c217548a5feffcdcda9fe2c6bc
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 14:40:55 2026 +0200
+
+    Swapped one onf the fairness graphs with a variance graph to have a better mlqf and fcfs compartiv
+e test
+
+commit 56ee45467b1a528bf30d4c4c0ca3789b5707ef5e
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 13:02:18 2026 +0200
+
+    removed 75 patrons and put in 25
+
+commit 0e295e8735ce713313532596634386c7b7e7994b
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 12:21:34 2026 +0200
+
+    edited input commands
+
+commit bfac273d15bb1826768c06d976f8f1f7c6ed02cb
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 10:44:40 2026 +0200
+
+    Added a README.md file
+
+commit 285283a0e7e443dc6ac5ebb07aed2d7ffd219230
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 10:39:54 2026 +0200
+
+    changed color pallette
+
+commit 76a89e315183f087b20bebdd0c67ac2c9b290197
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 10:34:33 2026 +0200
+
+    extra fairness plot
+
+commit 5712f5cd2e7a9d77e399cbd6ceca177b34b7b176
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 10:30:00 2026 +0200
+
+    updated graphs
+
+commit 45cf9386321f84eb4bfd92b920a27e5ea9838585
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 10:24:33 2026 +0200
+
+    mocing away from base case of 30
+
+commit 92a0159127a16d69d327617f2b80488b742e4fda
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sun May 17 10:14:55 2026 +0200
+
+    added header between experiments and graphs file
+
+commit 69c10df807cd7bb46ee93a4e57a422d6fa4b7392
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sat May 16 22:43:36 2026 +0200
+
+    Output files
+
+commit 27c8ae74f2494ea5d3988e6c72a736933d71ecf7
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sat May 16 13:30:33 2026 +0200
+
+    fixed writing to file
+
+commit e8819f91cb45021b81dbf2970d657a57338dc840
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sat May 16 11:16:03 2026 +0200
+
+    Version 1
+
+commit 6792f9fad352c4c4e3f7fcbc866ea68ee1121fad
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sat May 16 11:08:49 2026 +0200
+
+    Added file output
+
+commit 37edcc08f58f0326935b46f2b88a270f0fc27726
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sat May 16 11:05:39 2026 +0200
+
+    foundations
+
+commit 14edd74b2da5b79f188fdb89d9368d09a1519c5a
+Author: GwilledCheez <yellowcarrot77@gmail.com>
+Date:   Sat May 16 11:02:02 2026 +0200
+
+    Initial commit
+(END)
