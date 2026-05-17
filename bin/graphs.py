@@ -97,33 +97,34 @@ def plot(df):
     print("Saved mean_median_wait.png")
     plt.close()
 
-    # Graph 4: Scaling line graph - mean wait vs patron count
+    # Graph 4: line graph - mean wait vs patron count
     scaling = df.groupby(['Algorithm', 'Num_patrons'])['Wait'].mean().reset_index()
     plt.figure(figsize=(10, 6))
     sns.lineplot(x='Num_patrons', y='Wait', hue='Algorithm',
                  hue_order=algorithms, marker='o', data=scaling)
-    plt.title('Scaling: Mean Wait Time vs Number of Patrons')
+    plt.title('Mean Wait Time vs Number of Patrons')
     plt.ylabel('Mean Wait Time (ms)')
     plt.xlabel('Number of Patrons')
     plt.grid(True)
-    plt.savefig(os.path.join(directory, 'scaling_wait.png'))
-    print("Saved scaling_wait.png")
+    plt.savefig(os.path.join(directory, 'mean_wait.png'))
+    print("Saved mean_wait.png")
     plt.close()
 
-    # Graph 5: Fairness - per-patron total wait, all patron counts
+    # Graph 5: Fairness - wait per patron, all patron counts
     fig, axes = plt.subplots(1, len(patron_counts), figsize=(20, 6), sharey=True)
     for ax, n in zip(axes, patron_counts):
         subset = df[df['Num_patrons'] == n]
         patron_totals = subset.groupby(['Algorithm', 'Patron'])['Wait'].sum().reset_index()
         sns.barplot(x='Patron', y='Wait', hue='Algorithm',
-                    hue_order=algorithms, data=patron_totals, ax=ax, legend=(ax == axes[-1]))
+                    hue_order=algorithms, data=patron_totals, ax=ax, legend=(ax == axes[0]))
         ax.set_title(f'{n} Patrons')
         ax.set_xlabel('Patron ID')
         ax.set_ylabel('Total Wait (ms)' if ax == axes[0] else '')
-    fig.suptitle('Total Wait Per Patron by Algorithm (Fairness)')
+    axes[0].legend(loc='upper left')
+    fig.suptitle('Total Wait Per Patron by Algorithm')
     plt.tight_layout()
-    plt.savefig(os.path.join(directory, 'fairness_per_patron.png'))
-    print("Saved fairness_per_patron.png")
+    plt.savefig(os.path.join(directory, 'wait_per_patron.png'))
+    print("Saved wait_per_patron.png")
     plt.close()
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
